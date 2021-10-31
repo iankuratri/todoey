@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
+
+:root {
+  --bg-color: #101028;
+  --font-color: #ffffff;
+  --primary-color: #22eba5;
+}
+
+html {
+  /* default font size of html element is 16px */
+  /* 62.5% of 16px = 10px */
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+
+  font-family: "Open Sans", sans-serif;
+  /* 1 x font size of the root element (html) */
+  font-size: 1rem;
+  line-height: 1.5;
+
+  background-color: var(--bg-color);
+  color: var(--font-color);
+}
