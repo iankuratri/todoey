@@ -4,6 +4,11 @@
   --bg-color: #101028;
   --font-color: #ffffff;
   --primary-color: #22eba5;
+
+  --sm-breakpoint: 576px;
+  --md-breakpoint: 768px;
+  --lg-breakpoint: 992px;
+  --xl-breakpoint: 1200px;
 }
 
 html {
@@ -22,4 +27,23 @@ body {
 
   background-color: var(--bg-color);
   color: var(--font-color);
+}
+
+/* X-Small devices (portrait phones, less than 576px) */
+/* No media query for `xs` since this is the default in project */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: var(--sm-breakpoint)) {
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: var(--md-breakpoint)) {
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: var(--lg-breakpoint)) {
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: var(--xl-breakpoint)) {
 }
