@@ -1,15 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
 
 :root {
-  --bg-color: #101028;
+  --bg-dark-color: #101028;
+  --bg-light-color: #292d4a;
+
   --font-color: #ffffff;
   --primary-color: #22eba5;
 }
 
 html {
   /* default font size of html element is 16px */
-  /* 62.5% of 16px = 10px */
-  font-size: 62.5%;
+  font-size: 70%;
 }
 
 body {
@@ -18,14 +19,66 @@ body {
   font-family: "Open Sans", sans-serif;
   /* 1 x font size of the root element (html) */
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.75;
 
-  background-color: var(--bg-color);
+  background-color: var(--bg-dark-color);
   color: var(--font-color);
 }
 
-/* X-Small devices (portrait phones, less than 576px) */
-/* No media query for `xs` since this is the default in project */
+.container {
+  margin: 40px 20px;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  border: 0;
+  background-color: var(--primary-color);
+  padding: 0.7rem 1.5rem;
+  border-radius: 1.5rem;
+  color: var(--bg-light-color);
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+ul {
+  padding-left: 0;
+}
+
+ul > li {
+  list-style-type: none;
+}
+
+dd {
+  margin-left: 0;
+}
+
+.todo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
