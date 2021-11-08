@@ -27,49 +27,60 @@ class App extends React.Component {
 
     return (
       <div className="container">
-        <header>
-          <h1>Todoey!</h1>
-          <button>Clear All</button>
+        <header className="block block-header">
+          <h1 className="header__brand">Todoey!</h1>
+          <button className="btn btn--primary">Clear All</button>
         </header>
 
-        <section>
+        <section className="block block-form">
           <form>
             <div className="form-control">
               <label htmlFor="name">Todo</label>
-              <input type="text" name="name" placeholder="Add Task" />
+              <input
+                className="input"
+                type="text"
+                name="name"
+                placeholder="Add Task"
+              />
             </div>
 
             <div className="form-control">
               <label htmlFor="priority">Priority</label>
-              <select name="priority">
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
+              <select className="select" name="priority">
+                <option value="1">Low</option>
+                <option value="2">Medium</option>
+                <option value="3">High</option>
               </select>
             </div>
-          </form>
 
-          <button>Add</button>
+            <button className="btn btn--primary btn--block btn-add">Add</button>
+          </form>
         </section>
 
-        <section>
+        <section className="block block-filters">
           <div className="filter-buttons">
-            <button>All</button>
-            <button>Completed</button>
-            <button>Uncompleted</button>
+            <button className="btn btn--primary">All</button>
+            <button className="btn btn--primary">Completed</button>
+            <button className="btn btn--primary">Uncompleted</button>
           </div>
+        </section>
 
-          <ul>
+        <section className="block block-todos">
+          <ul className="todo">
             {todos.map((todo) => (
-              <li key={todo.id} className="todo">
-                <div>
-                  <dt>{todo.name}</dt>
-                  <dd>{todo.priority}</dd>
+              <li key={todo.id} className="todo__list">
+                <div className="todo__details">
+                  <dt className="todo__name">{todo.name}</dt>
+                  <dd className="todo__priority">{todo.priority}</dd>
                 </div>
 
-                <div>
-                  <button>&#10004;</button>
-                  <button>&#10008;</button>
+                <div className="todo__actions">
+                  <button className="btn btn--primary btn--round">
+                    &#10004;
+                  </button>
+                  <button className="btn btn--primary btn--round">
+                    &#10008;
+                  </button>
                 </div>
               </li>
             ))}
