@@ -1,4 +1,3 @@
-import "./App.css";
 import React from "react";
 
 class App extends React.Component {
@@ -59,9 +58,12 @@ class App extends React.Component {
 
         <section className="block block-filters">
           <div className="filter-buttons">
-            <button className="btn btn--primary">All</button>
-            <button className="btn btn--primary">Completed</button>
-            <button className="btn btn--primary">Uncompleted</button>
+            {/* Toggle btn--outline on selection */}
+            <button className="btn btn--primary btn--outline">All</button>
+            <button className="btn btn--primary btn--outline">Completed</button>
+            <button className="btn btn--primary btn--outline">
+              Uncompleted
+            </button>
           </div>
         </section>
 
