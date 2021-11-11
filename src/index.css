@@ -81,8 +81,12 @@ h1 {
 }
 
 .btn--primary {
-  background-color: var(--primary-color);
+  background: var(--primary-color);
   color: var(--font-color-dark);
+}
+
+.btn--primary:hover {
+  background: #1ed394;
 }
 
 .btn--block {
@@ -95,6 +99,17 @@ h1 {
   height: 38px;
   width: 38px;
   margin: 0;
+}
+
+.btn--outline {
+  background: var(--bg-color-dark);
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.btn--outline:hover {
+  background: var(--primary-color);
+  color: var(--font-color-dark);
 }
 
 .btn-add {
@@ -143,9 +158,7 @@ h1 {
 
 .filter-buttons {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  flex-direction: column;
 }
 
 /* Todos block */
@@ -198,22 +211,41 @@ dd {
   text-decoration: line-through;
 }
 
-/* Mobile S (320px and up) */
-@media (min-width: 576px) {
+/* Media Queries */
+
+/* Mobile S (425px and up) */
+@media (min-width: 425px) {
+  .filter-buttons {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
 }
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
+  html {
+    font-size: 65%;
+  }
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+  html {
+    font-size: 70%;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
+  html {
+    font-size: 75%;
+  }
 }
 
 /* X-Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
+  html {
+    font-size: 80%;
+  }
 }
