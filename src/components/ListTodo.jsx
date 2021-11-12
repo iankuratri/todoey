@@ -1,4 +1,5 @@
 import React from "react";
+import sprite from "../assets/icons/sprite.svg";
 
 class ListTodo extends React.Component {
   render() {
@@ -16,10 +17,14 @@ class ListTodo extends React.Component {
 
               <div className="todo__actions">
                 <button className="btn btn--primary btn--round">
-                  &#10004;
+                  <svg className="icon">
+                    <use href={sprite + "#done"}></use>
+                  </svg>
                 </button>
                 <button className="btn btn--primary btn--round">
-                  &#10008;
+                  <svg className="icon">
+                    <use href={sprite + "#delete"}></use>
+                  </svg>
                 </button>
               </div>
             </li>
