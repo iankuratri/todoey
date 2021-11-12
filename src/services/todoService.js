@@ -14,3 +14,7 @@ const saveTodos = (todos) => {
 
   localStorage.setItem(key, stringifiedTodos);
 };
+
+const deleteAllTodos = () => {
+  localStorage.removeItem(key);
+};
