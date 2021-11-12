@@ -71,6 +71,7 @@ h1 {
 .btn {
   font-family: inherit;
   font-size: 1.1rem;
+  font-weight: 500;
 
   border-radius: 40px;
   border: 0;
@@ -81,6 +82,11 @@ h1 {
   text-align: center;
   white-space: nowrap;
   letter-spacing: 0.5px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .btn--primary {
@@ -99,8 +105,8 @@ h1 {
 .btn--round {
   padding: 1rem;
   border-radius: 100%;
-  height: 38px;
-  width: 38px;
+  /* height: 38px;
+  width: 38px; */
   margin: 0;
 }
 
@@ -117,6 +123,14 @@ h1 {
 
 .btn-add {
   margin-top: 2rem;
+}
+
+/* Icons */
+
+.icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  vertical-align: middle;
 }
 
 /* Inputs */
