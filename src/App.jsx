@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import AddTodo from "./components/AddTodo";
 import FilterTodo from "./components/FilterTodo";
 import ListTodo from "./components/ListTodo";
+import todoService from "./services/todoService";
 
 class App extends React.Component {
   state = {
@@ -11,18 +12,26 @@ class App extends React.Component {
         id: 1,
         name: "Learn React",
         priority: "High",
+        completed: true,
       },
       {
         id: 2,
         name: "Learn Node.js",
         priority: "Medium",
+        completed: false,
       },
       {
         id: 3,
         name: "Make React Projects",
         priority: "Medium",
+        completed: false,
       },
     ],
+  };
+
+  handleClearAll = () => {
+    todoService.deleteAllTodos();
+    this.setState({ todos: [] });
   };
 
   render() {
@@ -30,7 +39,7 @@ class App extends React.Component {
 
     return (
       <div className="container">
-        <Header />
+        <Header onClearAll={this.handleClearAll} />
         <AddTodo />
         <FilterTodo />
         <ListTodo todos={todos} />

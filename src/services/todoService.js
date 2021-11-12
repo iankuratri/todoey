@@ -18,3 +18,6 @@ const saveTodos = (todos) => {
 const deleteAllTodos = () => {
   localStorage.removeItem(key);
 };
+
+// eslint-disable-next-line import/no-anonymous-default-export
+export default { getTodos, saveTodos, deleteAllTodos };
