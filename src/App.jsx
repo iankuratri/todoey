@@ -29,6 +29,11 @@ class App extends React.Component {
     this.setState({ todos: filteredTodos, selectedFilter: newFilter });
   };
 
+  handleUpdatedTodos = (todos) => {
+    todoService.saveTodos(todos);
+    this.setState({ todos });
+  };
+
   render() {
     const { todos, selectedFilter } = this.state;
 
@@ -38,9 +43,9 @@ class App extends React.Component {
         <AddTodoForm onAddTodo={this.handleAddTodo} />
         <FilterTodo
           selectedFilter={selectedFilter}
-          onChange={this.handleFilterChange}
+          onFilterChange={this.handleFilterChange}
         />
-        <ListTodo todos={todos} />
+        <ListTodo todos={todos} onUpdate={this.handleUpdatedTodos} />
       </div>
     );
   }
