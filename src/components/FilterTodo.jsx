@@ -6,7 +6,7 @@ class FilterTodo extends React.Component {
     super(props);
 
     this.filterButtons = ["all", "completed", "uncompleted"];
-    this.updateTodos = props.onChange;
+    this.updateTodos = props.onFilterChange;
   }
 
   filterChanged = (newFilter) => {
