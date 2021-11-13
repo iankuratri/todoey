@@ -10,7 +10,7 @@ class ListTodo extends React.Component {
         <ul className="todo">
           {todos.map((todo) => (
             <li key={todo.id} className="todo__list">
-              <div className="todo__details">
+              <div className={this.getTodoClasses(todo)}>
                 <dt className="todo__name">{todo.name}</dt>
                 <dd className="todo__priority">{todo.priority}</dd>
               </div>
@@ -33,6 +33,12 @@ class ListTodo extends React.Component {
       </section>
     );
   }
+
+  getTodoClasses = ({ completed }) => {
+    let classes = "todo__details ";
+    if (completed) classes += "todo__completed";
+    return classes;
+  };
 }
 
 export default ListTodo;
