@@ -30,7 +30,8 @@ class App extends React.Component {
   };
 
   handleAddTodo = (todo) => {
-    const todos = [todo, ...this.state.todos];
+    const newTodo = { ...todo, id: Date.now(), completed: false };
+    const todos = [newTodo, ...this.state.todos];
     this.setState({ todos });
   };
 
