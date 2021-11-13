@@ -6,32 +6,17 @@ import ListTodo from "./components/ListTodo";
 import todoService from "./services/todoService";
 
 class App extends React.Component {
-  state = {
-    todos: [
-      {
-        id: 1,
-        name: "Learn React",
-        priority: "High",
-        completed: true,
-      },
-      {
-        id: 2,
-        name: "Learn Node.js",
-        priority: "Medium",
-        completed: false,
-      },
-      {
-        id: 3,
-        name: "Make React Projects",
-        priority: "Medium",
-        completed: false,
-      },
-    ],
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = { todos: todoService.getTodos() };
+  }
 
   handleAddTodo = (todo) => {
     const newTodo = { ...todo, id: Date.now(), completed: false };
     const todos = [newTodo, ...this.state.todos];
+
+    todoService.saveTodos(todos);
     this.setState({ todos });
   };
 
