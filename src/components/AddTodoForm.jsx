@@ -1,10 +1,16 @@
 import React from "react";
 
 class AddTodoForm extends React.Component {
-  state = {
-    formValue: { name: "", priority: "" },
-    errors: {},
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      formValue: { name: "", priority: "" },
+      errors: {},
+    };
+
+    this.addTodo = props.onAddTodo;
+  }
 
   handleChange = ({ currentTarget: input }) => {
     const formValue = { ...this.state.formValue };
@@ -13,7 +19,7 @@ class AddTodoForm extends React.Component {
     this.setState({ formValue });
   };
 
-  handleSubmit = (e, addTodo) => {
+  handleSubmit = (e) => {
     e.preventDefault();
 
     // validate form
@@ -22,7 +28,7 @@ class AddTodoForm extends React.Component {
 
     // add todo
     const { formValue } = this.state;
-    addTodo(formValue);
+    this.addTodo(formValue);
 
     // reset form
     this.resetForm();
@@ -56,14 +62,13 @@ class AddTodoForm extends React.Component {
   };
 
   render() {
-    const { onAddTodo } = this.props;
     const { name, priority } = this.state.formValue;
     const { name: nameValidation, priority: priorityValidation } =
       this.state.errors;
 
     return (
       <section className="block block-form">
-        <form onSubmit={(e) => this.handleSubmit(e, onAddTodo)}>
+        <form onSubmit={this.handleSubmit}>
           <div className="form-control">
             <label htmlFor="name">Todo</label>
             <input
