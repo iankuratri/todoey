@@ -31,7 +31,7 @@ class App extends React.Component {
     return (
       <div className="container">
         <Header onClearAll={this.handleClearAll} />
-        <AddTodoForm onAdd={this.handleAddTodo} />
+        <AddTodoForm onAddTodo={this.handleAddTodo} />
         <FilterTodo />
         <ListTodo todos={todos} />
       </div>

@@ -56,14 +56,14 @@ class AddTodoForm extends React.Component {
   };
 
   render() {
-    const { onAdd } = this.props;
+    const { onAddTodo } = this.props;
     const { name, priority } = this.state.formValue;
     const { name: nameValidation, priority: priorityValidation } =
       this.state.errors;
 
     return (
       <section className="block block-form">
-        <form onSubmit={(e) => this.handleSubmit(e, onAdd)}>
+        <form onSubmit={(e) => this.handleSubmit(e, onAddTodo)}>
           <div className="form-control">
             <label htmlFor="name">Todo</label>
             <input
