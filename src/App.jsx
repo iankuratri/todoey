@@ -25,26 +25,8 @@ class App extends React.Component {
     this.setState({ todos: [] });
   };
 
-  handleFilterChange = (newFilter) => {
-    const { selectedFilter } = this.state;
-    if (newFilter === selectedFilter) return;
-
-    let todos = todoService.getTodos();
-
-    switch (newFilter) {
-      case "completed":
-        todos = todos.filter((todo) => todo.completed);
-        break;
-
-      case "uncompleted":
-        todos = todos.filter((todo) => !todo.completed);
-        break;
-
-      default:
-        break;
-    }
-
-    this.setState({ todos, selectedFilter: newFilter });
+  handleFilterChange = ({ filteredTodos, newFilter }) => {
+    this.setState({ todos: filteredTodos, selectedFilter: newFilter });
   };
 
   render() {

@@ -1,11 +1,37 @@
 import React from "react";
+import todoService from "./../services/todoService";
 
 class FilterTodo extends React.Component {
-  filterButtons = ["all", "completed", "uncompleted"];
+  constructor(props) {
+    super(props);
+
+    this.filterButtons = ["all", "completed", "uncompleted"];
+    this.updateTodos = props.onChange;
+  }
+
+  filterChanged = (newFilter) => {
+    const { selectedFilter } = this.props;
+    if (newFilter === selectedFilter) return;
+
+    let todos = todoService.getTodos();
+
+    switch (newFilter) {
+      case "completed":
+        todos = todos.filter((todo) => todo.completed);
+        break;
+
+      case "uncompleted":
+        todos = todos.filter((todo) => !todo.completed);
+        break;
+
+      default:
+        break;
+    }
+
+    this.updateTodos({ filteredTodos: todos, newFilter });
+  };
 
   render() {
-    const { onChange } = this.props;
-
     return (
       <section className="block block-filters">
         <div className="filter-buttons">
@@ -13,7 +39,7 @@ class FilterTodo extends React.Component {
             <button
               key={buttonName}
               className={this.getButtonClasses(buttonName)}
-              onClick={() => onChange(buttonName)}
+              onClick={() => this.filterChanged(buttonName)}
             >
               {buttonName}
             </button>
