@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./components/Header";
-import AddTodo from "./components/AddTodo";
+import AddTodoForm from "./components/AddTodoForm";
 import FilterTodo from "./components/FilterTodo";
 import ListTodo from "./components/ListTodo";
 import todoService from "./services/todoService";
@@ -29,6 +29,11 @@ class App extends React.Component {
     ],
   };
 
+  handleAddTodo = (todo) => {
+    const todos = [todo, ...this.state.todos];
+    this.setState({ todos });
+  };
+
   handleClearAll = () => {
     todoService.deleteAllTodos();
     this.setState({ todos: [] });
@@ -40,7 +45,7 @@ class App extends React.Component {
     return (
       <div className="container">
         <Header onClearAll={this.handleClearAll} />
-        <AddTodo />
+        <AddTodoForm onAdd={this.handleAddTodo} />
         <FilterTodo />
         <ListTodo todos={todos} />
       </div>

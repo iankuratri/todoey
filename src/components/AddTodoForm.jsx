@@ -1,6 +1,6 @@
 import React from "react";
 
-class AddTodo extends React.Component {
+class AddTodoForm extends React.Component {
   state = {
     formValue: { name: "", priority: "" },
     errors: {},
@@ -13,13 +13,19 @@ class AddTodo extends React.Component {
     this.setState({ formValue });
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = (e, addTodo) => {
     e.preventDefault();
 
+    // validate form
     const isFormInvalid = this.validateForm();
     if (isFormInvalid) return;
 
-    this.doSubmit();
+    // add todo
+    const { formValue } = this.state;
+    addTodo(formValue);
+
+    // reset form
+    this.resetForm();
   };
 
   validateForm = () => {
@@ -39,17 +45,25 @@ class AddTodo extends React.Component {
     return null;
   };
 
-  doSubmit = () => {
-    const { formValue } = this.state;
-    console.log(formValue);
+  resetForm = () => {
+    const formValue = { ...this.state.formValue };
+
+    for (const name in formValue) {
+      formValue[name] = "";
+    }
+
+    this.setState({ formValue });
   };
 
   render() {
-    const { name, priority } = this.state.errors;
+    const { onAdd } = this.props;
+    const { name, priority } = this.state.formValue;
+    const { name: nameValidation, priority: priorityValidation } =
+      this.state.errors;
 
     return (
       <section className="block block-form">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={(e) => this.handleSubmit(e, onAdd)}>
           <div className="form-control">
             <label htmlFor="name">Todo</label>
             <input
@@ -58,9 +72,13 @@ class AddTodo extends React.Component {
               name="name"
               maxLength="128"
               placeholder="Add Task"
+              autoComplete="off"
+              value={name}
               onChange={this.handleChange}
             />
-            {name && <p className="invalid-input">{name}</p>}
+            {nameValidation && (
+              <p className="invalid-input">{nameValidation}</p>
+            )}
           </div>
 
           <div className="form-control">
@@ -68,6 +86,7 @@ class AddTodo extends React.Component {
             <select
               className="select"
               name="priority"
+              value={priority}
               onChange={this.handleChange}
             >
               <option value="">Select Priority</option>
@@ -75,7 +94,9 @@ class AddTodo extends React.Component {
               <option value="Medium">Medium</option>
               <option value="High">High</option>
             </select>
-            {priority && <p className="invalid-input">{priority}</p>}
+            {priorityValidation && (
+              <p className="invalid-input">{priorityValidation}</p>
+            )}
           </div>
 
           <button className="btn btn--primary btn--block btn-add">Add</button>
@@ -85,4 +106,4 @@ class AddTodo extends React.Component {
   }
 }
 
-export default AddTodo;
+export default AddTodoForm;
