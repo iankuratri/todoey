@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { todos: todoService.getTodos() };
+    this.state = { todos: todoService.getTodos(), selectedFilter: "all" };
   }
 
   handleAddTodo = (todo) => {
@@ -25,14 +25,39 @@ class App extends React.Component {
     this.setState({ todos: [] });
   };
 
+  handleFilterChange = (newFilter) => {
+    const { selectedFilter } = this.state;
+    if (newFilter === selectedFilter) return;
+
+    let todos = todoService.getTodos();
+
+    switch (newFilter) {
+      case "completed":
+        todos = todos.filter((todo) => todo.completed);
+        break;
+
+      case "uncompleted":
+        todos = todos.filter((todo) => !todo.completed);
+        break;
+
+      default:
+        break;
+    }
+
+    this.setState({ todos, selectedFilter: newFilter });
+  };
+
   render() {
-    const { todos } = this.state;
+    const { todos, selectedFilter } = this.state;
 
     return (
       <div className="container">
         <Header onClearAll={this.handleClearAll} />
         <AddTodoForm onAddTodo={this.handleAddTodo} />
-        <FilterTodo />
+        <FilterTodo
+          selectedFilter={selectedFilter}
+          onChange={this.handleFilterChange}
+        />
         <ListTodo todos={todos} />
       </div>
     );
