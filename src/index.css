@@ -88,6 +88,7 @@ h1 {
 .btn:disabled {
   pointer-events: none;
   opacity: 0.65;
+  background: var(--font-color-light);
 }
 
 .btn--primary {
@@ -280,4 +281,8 @@ dd {
 
 .titlecase {
   text-transform: capitalize;
+}
+
+.text-center {
+  text-align: center;
 }

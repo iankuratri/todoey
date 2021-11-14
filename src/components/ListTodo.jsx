@@ -39,7 +39,9 @@ class ListTodo extends React.Component {
               <div className="todo__actions">
                 <button
                   className="btn btn--primary btn--round"
+                  disabled={todo.completed}
                   onClick={() => this.markAsCompleted(todo)}
+                  title="Mark as Done"
                 >
                   <svg className="icon">
                     <use href={sprite + "#done"}></use>
@@ -48,6 +50,7 @@ class ListTodo extends React.Component {
                 <button
                   className="btn btn--primary btn--round"
                   onClick={() => this.deleteTodo(todo)}
+                  title="Delete"
                 >
                   <svg className="icon">
                     <use href={sprite + "#delete"}></use>
