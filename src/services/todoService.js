@@ -1,5 +1,6 @@
 const key = "todos";
 
+// eslint-disable-next-line no-unused-vars
 const sampleTodos = [
   {
     id: 1,
@@ -24,7 +25,11 @@ const sampleTodos = [
 const getTodos = () => {
   const stringifiedTodos = localStorage.getItem(key);
 
-  if (!stringifiedTodos) return sampleTodos;
+  if (!stringifiedTodos) {
+    // for development purpose only
+    // return sampleTodos;
+    return [];
+  }
 
   const todos = JSON.parse(stringifiedTodos);
   return todos;
