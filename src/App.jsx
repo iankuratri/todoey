@@ -36,17 +36,22 @@ class App extends React.Component {
 
   render() {
     const { todos, selectedFilter } = this.state;
+    const savedTodos = todoService.getTodos();
 
     return (
-      <div className="container">
+      <main className="container">
         <Header onClearAll={this.handleClearAll} />
         <AddTodoForm onAddTodo={this.handleAddTodo} />
-        <FilterTodo
-          selectedFilter={selectedFilter}
-          onFilterChange={this.handleFilterChange}
-        />
+
+        {!!savedTodos.length && (
+          <FilterTodo
+            selectedFilter={selectedFilter}
+            onFilterChange={this.handleFilterChange}
+          />
+        )}
+
         <ListTodo todos={todos} onUpdate={this.handleUpdatedTodos} />
-      </div>
+      </main>
     );
   }
 }
