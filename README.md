@@ -1,7 +1,7 @@
 # Todoey!
 
 A basic todo app built using React.\
-Open [https://todoey-react-app.netlify.app](https://todoey-react-app.netlify.app) to view it in the browser.
+[https://todoey-react-app.netlify.app](https://todoey-react-app.netlify.app)
 
 ## Getting started with App
 
