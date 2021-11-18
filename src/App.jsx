@@ -45,6 +45,7 @@ class App extends React.Component {
 
         {!!savedTodos.length && (
           <FilterTodo
+            savedTodos={savedTodos}
             selectedFilter={selectedFilter}
             onFilterChange={this.handleFilterChange}
           />

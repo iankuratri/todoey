@@ -1,5 +1,4 @@
 import React from "react";
-import todoService from "./../services/todoService";
 
 class FilterTodo extends React.Component {
   constructor(props) {
@@ -10,25 +9,26 @@ class FilterTodo extends React.Component {
   }
 
   filterChanged = (newFilter) => {
-    const { selectedFilter } = this.props;
+    const { selectedFilter, savedTodos } = this.props;
     if (newFilter === selectedFilter) return;
 
-    let todos = todoService.getTodos();
+    let filteredTodos = [];
 
     switch (newFilter) {
       case "completed":
-        todos = todos.filter((todo) => todo.completed);
+        filteredTodos = savedTodos.filter((todo) => todo.completed);
         break;
 
       case "uncompleted":
-        todos = todos.filter((todo) => !todo.completed);
+        filteredTodos = savedTodos.filter((todo) => !todo.completed);
         break;
 
       default:
+        filteredTodos = savedTodos;
         break;
     }
 
-    this.updateTodos({ filteredTodos: todos, newFilter });
+    this.updateTodos({ filteredTodos, newFilter });
   };
 
   render() {
