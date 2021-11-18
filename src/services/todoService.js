@@ -26,9 +26,9 @@ const getTodos = () => {
   const stringifiedTodos = localStorage.getItem(key);
 
   if (!stringifiedTodos) {
-    // for development purpose only
-    // return sampleTodos;
-    return [];
+    // save default todos and return them
+    saveTodos(sampleTodos);
+    return sampleTodos;
   }
 
   const todos = JSON.parse(stringifiedTodos);
@@ -42,7 +42,8 @@ const saveTodos = (todos) => {
 };
 
 const deleteAllTodos = () => {
-  localStorage.removeItem(key);
+  // replace saved todos with empty array
+  saveTodos([]);
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
