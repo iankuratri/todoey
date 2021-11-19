@@ -7,56 +7,54 @@ import todoService from "./services/todoService";
 
 // Function component
 
-const App = () => {
-  const savedTodos = todoService.getTodos();
-  const [todos, setTodos] = useState(savedTodos);
-  const [selectedFilter, setSelectedFilter] = useState("all");
+// const App = () => {
+//   const savedTodos = todoService.getTodos();
+//   const [todos, setTodos] = useState(savedTodos);
+//   const [selectedFilter, setSelectedFilter] = useState("all");
 
-  const handleAddTodo = (todo) => {
-    const newTodo = { ...todo, id: Date.now(), completed: false };
-    const updatedTodos = [newTodo, ...todos];
+//   const handleAddTodo = (todo) => {
+//     const newTodo = { ...todo, id: Date.now(), completed: false };
+//     const updatedTodos = [newTodo, ...todos];
 
-    todoService.saveTodos(updatedTodos);
-    setTodos(updatedTodos);
-  };
+//     todoService.saveTodos(updatedTodos);
+//     setTodos(updatedTodos);
+//   };
 
-  const handleClearAll = () => {
-    todoService.deleteAllTodos();
-    setTodos([]);
-  };
+//   const handleClearAll = () => {
+//     todoService.deleteAllTodos();
+//     setTodos([]);
+//   };
 
-  const handleFilterChange = ({ filteredTodos, newFilter }) => {
-    setSelectedFilter(newFilter);
-    setTodos(filteredTodos);
-  };
+//   const handleFilterChange = ({ filteredTodos, newFilter }) => {
+//     setSelectedFilter(newFilter);
+//     setTodos(filteredTodos);
+//   };
 
-  const handleUpdatedTodos = (todos) => {
-    todoService.saveTodos(todos);
-    setTodos(todos);
-  };
+//   const handleUpdatedTodos = (todos) => {
+//     todoService.saveTodos(todos);
+//     setTodos(todos);
+//   };
 
-  return (
-    <main className="container">
-      <Header onClearAll={handleClearAll} />
-      <AddTodoForm onAddTodo={handleAddTodo} />
+//   return (
+//     <main className="container">
+//       <Header onClearAll={handleClearAll} />
+//       <AddTodoForm onAddTodo={handleAddTodo} />
 
-      {!!savedTodos.length && (
-        <FilterTodo
-          savedTodos={savedTodos}
-          selectedFilter={selectedFilter}
-          onFilterChange={handleFilterChange}
-        />
-      )}
+//       {!!savedTodos.length && (
+//         <FilterTodo
+//           savedTodos={savedTodos}
+//           selectedFilter={selectedFilter}
+//           onFilterChange={handleFilterChange}
+//         />
+//       )}
 
-      <ListTodo todos={todos} onUpdate={handleUpdatedTodos} />
-    </main>
-  );
-};
+//       <ListTodo todos={todos} onUpdate={handleUpdatedTodos} />
+//     </main>
+//   );
+// };
 
 // Class component
 
-/**
- 
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -66,15 +64,15 @@ class App extends React.Component {
 
   handleAddTodo = (todo) => {
     const newTodo = { ...todo, id: Date.now(), completed: false };
-    const todos = [newTodo, ...this.state.todos];
+    const todos = [newTodo, ...todoService.getTodos()];
 
     todoService.saveTodos(todos);
-    this.setState({ todos });
+    this.setState({ todos, selectedFilter: "all" });
   };
 
   handleClearAll = () => {
     todoService.deleteAllTodos();
-    this.setState({ todos: [] });
+    this.setState({ todos: [], selectedFilter: "all" });
   };
 
   handleFilterChange = ({ filteredTodos, newFilter }) => {
@@ -108,7 +106,5 @@ class App extends React.Component {
     );
   }
 }
-
-*/
 
 export default App;
