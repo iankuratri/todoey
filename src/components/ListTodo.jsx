@@ -2,25 +2,21 @@ import React from "react";
 import sprite from "../assets/icons/sprite.svg";
 
 class ListTodo extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.updateTodos = this.props.onUpdate;
-  }
-
   markAsCompleted = (todo) => {
     const todos = [...this.props.todos];
     const index = todos.indexOf(todo);
     todos[index] = { ...todo, completed: true };
 
-    this.updateTodos(todos);
+    const { onUpdate: updateTodos } = this.props;
+    updateTodos(todos);
   };
 
   deleteTodo = (todo) => {
     const currentTodos = this.props.todos;
     const todos = currentTodos.filter((t) => t.id !== todo.id);
 
-    this.updateTodos(todos);
+    const { onUpdate: updateTodos } = this.props;
+    updateTodos(todos);
   };
 
   render() {
