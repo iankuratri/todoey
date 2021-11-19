@@ -1,12 +1,7 @@
 import React from "react";
 
 class FilterTodo extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.filterButtons = ["all", "completed", "uncompleted"];
-    this.updateTodos = props.onFilterChange;
-  }
+  filterButtons = ["all", "completed", "uncompleted"];
 
   filterChanged = (newFilter) => {
     const { selectedFilter, savedTodos } = this.props;
@@ -28,7 +23,8 @@ class FilterTodo extends React.Component {
         break;
     }
 
-    this.updateTodos({ filteredTodos, newFilter });
+    const { onFilterChange: updateTodos } = this.props;
+    updateTodos({ filteredTodos, newFilter });
   };
 
   render() {
