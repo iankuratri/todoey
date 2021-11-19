@@ -8,8 +8,6 @@ class AddTodoForm extends React.Component {
       formValue: { name: "", priority: "" },
       errors: {},
     };
-
-    this.addTodo = props.onAddTodo;
   }
 
   handleChange = ({ currentTarget: input }) => {
@@ -27,8 +25,9 @@ class AddTodoForm extends React.Component {
     if (isFormInvalid) return;
 
     // add todo
+    const { onAddTodo: addTodo } = this.props;
     const { formValue } = this.state;
-    this.addTodo(formValue);
+    addTodo(formValue);
 
     // reset form
     this.resetForm();
