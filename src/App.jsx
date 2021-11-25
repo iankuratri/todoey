@@ -68,10 +68,10 @@ class App extends React.Component {
 
   handleAddTodo = (todo) => {
     const newTodo = { ...todo, id: Date.now(), completed: false };
-    const todos = [newTodo, ...todoService.getTodos()];
+    const updatedTodos = [newTodo, ...this.state.todos];
 
-    todoService.saveTodos(todos);
-    this.setState({ todos, selectedFilter: "all" });
+    todoService.saveTodos(updatedTodos);
+    this.setState({ todos: updatedTodos, selectedFilter: "all" });
   };
 
   handleClearAll = () => {
@@ -88,47 +88,31 @@ class App extends React.Component {
     this.setState({ todos });
   };
 
-  getFilteredTodos = () => {
-    const { selectedFilter, todos } = this.state;
-
-    let filteredTodos = [];
-
-    switch (selectedFilter) {
-      case "completed":
-        filteredTodos = todos.filter((todo) => todo.completed);
-        break;
-
-      case "uncompleted":
-        filteredTodos = todos.filter((todo) => !todo.completed);
-        break;
-
-      default:
-        filteredTodos = todos;
-        break;
-    }
-
-    return filteredTodos;
-  };
-
   render() {
-    const { selectedFilter } = this.state;
-    const filteredTodos = this.getFilteredTodos();
-    const savedTodos = todoService.getTodos();
+    const { selectedFilter, todos } = this.state;
+    const filteredTodos = todoService.getFilteredTodos({
+      selectedFilter,
+      todos,
+    });
 
     return (
       <main className="container">
         <Header onClearAll={this.handleClearAll} />
+
         <AddTodoForm onAddTodo={this.handleAddTodo} />
 
-        {!!savedTodos.length && (
+        {!!todos.length && (
           <FilterTodo
-            savedTodos={savedTodos}
             selectedFilter={selectedFilter}
             onFilterChange={this.handleFilterChange}
           />
         )}
 
-        <ListTodo todos={filteredTodos} onUpdate={this.handleUpdatedTodos} />
+        <ListTodo
+          todos={todos}
+          filteredTodos={filteredTodos}
+          onUpdate={this.handleUpdatedTodos}
+        />
       </main>
     );
   }

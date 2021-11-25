@@ -3,29 +3,30 @@ import sprite from "../assets/icons/sprite.svg";
 
 class ListTodo extends React.Component {
   markAsCompleted = (todo) => {
-    const todos = [...this.props.todos];
-    const index = todos.indexOf(todo);
-    todos[index] = { ...todo, completed: true };
+    const { todos, onUpdate: updateTodos } = this.props;
 
-    const { onUpdate: updateTodos } = this.props;
-    updateTodos(todos);
+    const todosCopy = [...todos];
+    const index = todosCopy.indexOf(todo);
+    todosCopy[index] = { ...todo, completed: true };
+
+    updateTodos(todosCopy);
   };
 
   deleteTodo = (todo) => {
-    const currentTodos = this.props.todos;
-    const todos = currentTodos.filter((t) => t.id !== todo.id);
+    const { todos, onUpdate: updateTodos } = this.props;
 
-    const { onUpdate: updateTodos } = this.props;
-    updateTodos(todos);
+    const updatedTodos = todos.filter((t) => t.id !== todo.id);
+
+    updateTodos(updatedTodos);
   };
 
   render() {
-    const { todos } = this.props;
+    const { filteredTodos } = this.props;
 
     return (
       <section className="block block-todos">
         <ul className="todo">
-          {todos.map((todo) => (
+          {filteredTodos.map((todo) => (
             <li key={todo.id} className="todo__list">
               <div className={this.getTodoClasses(todo)}>
                 <dt className="todo__name">{todo.name}</dt>

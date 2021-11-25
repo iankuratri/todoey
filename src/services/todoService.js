@@ -46,5 +46,25 @@ const deleteAllTodos = () => {
   saveTodos([]);
 };
 
+const getFilteredTodos = ({ selectedFilter, todos }) => {
+  let filteredTodos = [];
+
+  switch (selectedFilter) {
+    case "completed":
+      filteredTodos = todos.filter((todo) => todo.completed);
+      break;
+
+    case "uncompleted":
+      filteredTodos = todos.filter((todo) => !todo.completed);
+      break;
+
+    default:
+      filteredTodos = todos;
+      break;
+  }
+
+  return filteredTodos;
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { getTodos, saveTodos, deleteAllTodos };
+export default { getTodos, saveTodos, deleteAllTodos, getFilteredTodos };
