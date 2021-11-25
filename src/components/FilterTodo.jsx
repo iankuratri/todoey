@@ -1,5 +1,44 @@
 import React from "react";
 
+// Function component
+
+const FilterTodo = ({ selectedFilter, onFilterChange }) => {
+  const filterButtons = ["all", "completed", "uncompleted"];
+
+  const filterChanged = (newFilter) => {
+    if (newFilter === selectedFilter) return;
+
+    onFilterChange(newFilter);
+  };
+
+  const getButtonClasses = (buttonName) => {
+    let classes = "btn btn--primary titlecase ";
+    if (buttonName !== selectedFilter) classes += "btn--outline";
+
+    return classes;
+  };
+
+  return (
+    <section className="block block-filters">
+      <div className="filter-buttons">
+        {filterButtons.map((buttonName) => (
+          <button
+            key={buttonName}
+            className={getButtonClasses(buttonName)}
+            onClick={() => filterChanged(buttonName)}
+          >
+            {buttonName}
+          </button>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+// Class component
+
+/** 
+
 class FilterTodo extends React.Component {
   filterButtons = ["all", "completed", "uncompleted"];
 
@@ -37,5 +76,7 @@ class FilterTodo extends React.Component {
     return classes;
   };
 }
+
+*/
 
 export default FilterTodo;
