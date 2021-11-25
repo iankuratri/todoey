@@ -23,10 +23,10 @@ const ListTodo = ({ todos, filteredTodos, onUpdate: updateTodos }) => {
       <ul className="todo">
         {filteredTodos.map((todo) => (
           <li key={todo.id} className="todo__list">
-            <div className={getTodoClasses(todo)}>
+            <dl className={getTodoClasses(todo)}>
               <dt className="todo__name">{todo.name}</dt>
               <dd className="todo__priority">{todo.priority}</dd>
-            </div>
+            </dl>
 
             <div className="todo__actions">
               <button

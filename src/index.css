@@ -198,6 +198,10 @@ ul > li {
   list-style-type: none;
 }
 
+dl {
+  margin: 0;
+}
+
 dd {
   margin-left: 0;
 }
