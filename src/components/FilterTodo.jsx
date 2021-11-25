@@ -4,27 +4,10 @@ class FilterTodo extends React.Component {
   filterButtons = ["all", "completed", "uncompleted"];
 
   filterChanged = (newFilter) => {
-    const { selectedFilter, savedTodos } = this.props;
+    const { selectedFilter, onFilterChange } = this.props;
     if (newFilter === selectedFilter) return;
 
-    let filteredTodos = [];
-
-    switch (newFilter) {
-      case "completed":
-        filteredTodos = savedTodos.filter((todo) => todo.completed);
-        break;
-
-      case "uncompleted":
-        filteredTodos = savedTodos.filter((todo) => !todo.completed);
-        break;
-
-      default:
-        filteredTodos = savedTodos;
-        break;
-    }
-
-    const { onFilterChange: updateTodos } = this.props;
-    updateTodos({ filteredTodos, newFilter });
+    onFilterChange({ newFilter });
   };
 
   render() {
