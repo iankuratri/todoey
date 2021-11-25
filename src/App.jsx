@@ -79,7 +79,7 @@ class App extends React.Component {
     this.setState({ todos: [], selectedFilter: "all" });
   };
 
-  handleFilterChange = ({ newFilter }) => {
+  handleFilterChange = (newFilter) => {
     this.setState({ selectedFilter: newFilter });
   };
 

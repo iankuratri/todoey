@@ -7,7 +7,7 @@ class FilterTodo extends React.Component {
     const { selectedFilter, onFilterChange } = this.props;
     if (newFilter === selectedFilter) return;
 
-    onFilterChange({ newFilter });
+    onFilterChange(newFilter);
   };
 
   render() {
