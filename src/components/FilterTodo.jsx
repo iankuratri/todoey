@@ -11,20 +11,13 @@ const FilterTodo = ({ selectedFilter, onFilterChange }) => {
     onFilterChange(newFilter);
   };
 
-  const getButtonClasses = (buttonName) => {
-    let classes = "btn btn--primary titlecase ";
-    if (buttonName !== selectedFilter) classes += "btn--outline";
-
-    return classes;
-  };
-
   return (
     <section className="block block-filters">
       <div className="filter-buttons">
         {filterButtons.map((buttonName) => (
           <button
             key={buttonName}
-            className={getButtonClasses(buttonName)}
+            className={getButtonClasses(buttonName === selectedFilter)}
             onClick={() => filterChanged(buttonName)}
           >
             {buttonName}
@@ -33,6 +26,13 @@ const FilterTodo = ({ selectedFilter, onFilterChange }) => {
       </div>
     </section>
   );
+};
+
+const getButtonClasses = (selected) => {
+  let classes = "btn btn--primary titlecase ";
+  if (!selected) classes += "btn--outline";
+
+  return classes;
 };
 
 // Class component
