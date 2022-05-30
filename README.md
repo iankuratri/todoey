@@ -1,6 +1,6 @@
 # Todoey!
 
-A minimal todo app built using React.\
+A minimal todo web app built using React.\
 [https://todoey-react-app.netlify.app](https://todoey-react-app.netlify.app)
 
 ## Getting started with App
